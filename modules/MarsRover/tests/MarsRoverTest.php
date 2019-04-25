@@ -7,6 +7,9 @@ use PHPUnit\Framework\TestCase;
 
 class MarsRoverTest extends TestCase
 {
+    /**
+     * @return array
+     */
     public function initialPointsProvider()
     {
         return [
