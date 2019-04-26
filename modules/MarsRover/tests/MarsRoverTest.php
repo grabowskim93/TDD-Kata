@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\MarsRover\test;
 
 use App\MarsRover\src\MarsRover;
@@ -11,6 +13,8 @@ use PHPUnit\Framework\TestCase;
  */
 class MarsRoverTest extends TestCase
 {
+    //We don't use types declaration in tests (excepts data providers)
+
     /**
      * @return array
      */
@@ -68,7 +72,7 @@ class MarsRoverTest extends TestCase
      * @param int $x
      * @param int $y
      */
-    public function testMarsRover(int $x, int $y) : void
+    public function testMarsRover($x, $y)
     {
         $marsRover = new MarsRover($x, $y);
         $this->assertInstanceOf(MarsRover::class, $marsRover);
@@ -82,7 +86,7 @@ class MarsRoverTest extends TestCase
      * @param int $x
      * @param int $y
      */
-    public function testWrongInitialPoints(int $x, int $y) : void
+    public function testWrongInitialPoints($x, $y)
     {
         $this->expectException(\TypeError::class);
         new MarsRover($x, $y);
@@ -95,7 +99,7 @@ class MarsRoverTest extends TestCase
      * @param int $e
      * @param int $w
      */
-    public function testMarsRoverCommandInput(int $n, int $s, int $e, int $w) : void
+    public function testMarsRoverCommandInput($n, $s, $e, $w)
     {
         $marsRover = new MarsRover(1, 2);
 
@@ -111,7 +115,7 @@ class MarsRoverTest extends TestCase
      * @param int $e
      * @param int $w
      */
-    public function testMarsRoverWrongCommandInput(int $n, int $s, int $e, int $w) : void
+    public function testMarsRoverWrongCommandInput($n, $s, $e, $w)
     {
         $marsRover = new MarsRover(1, 1);
 
@@ -126,7 +130,7 @@ class MarsRoverTest extends TestCase
      * @param int $e
      * @param int $w
      */
-    public function testMarsRoverWrongCommandInputTypes(int $n, int $s, int $e, int $w) : void
+    public function testMarsRoverWrongCommandInputTypes($n, $s, $e, $w)
     {
         $marsRover = new MarsRover(1, 1);
 
