@@ -1,37 +1,50 @@
 <?php
 
-namespace App\tests;
+namespace App\MarsRover\test;
 
-use App\MarsRover;
+use App\MarsRover\src\MarsRover;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class MarsRoverTest
+ * @package App\MarsRover\test
+ */
 class MarsRoverTest extends TestCase
 {
     /**
      * @return array
      */
-    public function initialPointsProvider()
+    public function initialPointsProvider() : array
     {
         return [
             [1, 2]
         ];
     }
 
-    public function initialWrongPointsProvider()
+    /**
+     * @return array
+     */
+    public function initialWrongPointsProvider() : array
     {
         return [
             ['a', 2]
         ];
     }
 
-    public function commandPointsProvider()
+    /**
+     * @return array
+     */
+    public function commandPointsProvider() : array
     {
         return [
             [1, 0, 1, 0]
         ];
     }
 
-    public function commandWrongPointsProvider()
+    /**
+     * @return array
+     */
+    public function commandWrongPointsProvider() : array
     {
         return [
             [1, 0, 1, 1],
@@ -40,7 +53,10 @@ class MarsRoverTest extends TestCase
         ];
     }
 
-    public function commandWrongPointsTypesProvider()
+    /**
+     * @return array
+     */
+    public function commandWrongPointsTypesProvider() : array
     {
         return [
             [1, 0, 'a', 1]
@@ -49,8 +65,10 @@ class MarsRoverTest extends TestCase
 
     /**
      * @dataProvider initialPointsProvider
+     * @param int $x
+     * @param int $y
      */
-    public function testMarsRover($x, $y)
+    public function testMarsRover(int $x, int $y) : void
     {
         $marsRover = new MarsRover($x, $y);
         $this->assertInstanceOf(MarsRover::class, $marsRover);
@@ -61,8 +79,10 @@ class MarsRoverTest extends TestCase
 
     /**
      * @dataProvider initialWrongPointsProvider
+     * @param int $x
+     * @param int $y
      */
-    public function testWrongInitialPoints($x, $y)
+    public function testWrongInitialPoints(int $x, int $y) : void
     {
         $this->expectException(\TypeError::class);
         new MarsRover($x, $y);
@@ -70,8 +90,12 @@ class MarsRoverTest extends TestCase
 
     /**
      * @dataProvider commandPointsProvider
+     * @param int $n
+     * @param int $s
+     * @param int $e
+     * @param int $w
      */
-    public function testMarsRoverCommandInput($n, $s, $e, $w)
+    public function testMarsRoverCommandInput(int $n, int $s, int $e, int $w) : void
     {
         $marsRover = new MarsRover(1, 2);
 
@@ -82,8 +106,12 @@ class MarsRoverTest extends TestCase
 
     /**
      * @dataProvider commandWrongPointsProvider
+     * @param int $n
+     * @param int $s
+     * @param int $e
+     * @param int $w
      */
-    public function testMarsRoverWrongCommandInput($n, $s, $e, $w)
+    public function testMarsRoverWrongCommandInput(int $n, int $s, int $e, int $w) : void
     {
         $marsRover = new MarsRover(1, 1);
 
@@ -93,8 +121,12 @@ class MarsRoverTest extends TestCase
 
     /**
      * @dataProvider commandWrongPointsTypesProvider
+     * @param int $n
+     * @param int $s
+     * @param int $e
+     * @param int $w
      */
-    public function testMarsRoverWrongCommandInputTypes($n, $s, $e, $w)
+    public function testMarsRoverWrongCommandInputTypes(int $n, int $s, int $e, int $w) : void
     {
         $marsRover = new MarsRover(1, 1);
 
