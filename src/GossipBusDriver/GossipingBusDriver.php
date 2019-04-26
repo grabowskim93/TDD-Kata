@@ -89,20 +89,20 @@ class GossipingBusDriver
      * @param int $result
      * @return string | int
      */
-    private function generateOutput(int $result) : string
+    private function generateOutput(int $result)
     {
         if (!$result) {
             return 'never';
         }
 
-        return (string) $result;
+        return $result;
     }
 
     /**
      * @param array $routes
      * @return string | int
      */
-    public function checkGossips(array $routes) : string
+    public function checkGossips(array $routes)
     {
         $routes = $this->generateAllDayRoutes($routes);
         $fullGossipSteps = $this->compareGossipStops($routes);
