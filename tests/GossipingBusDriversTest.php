@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use App\GossipingBusDriver\GossipingBusDriver;
+use App\GossipBusDriver\GossipingBusDriver;
 use PHPUnit\Framework\TestCase;
 
 class GossipingBusDriversTest extends TestCase

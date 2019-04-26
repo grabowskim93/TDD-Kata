@@ -5,7 +5,7 @@ namespace Tests;
 use App\FizzBuzz\FizzBuzz;
 use PHPUnit\Framework\TestCase;
 
-class fizzBuzzTest extends TestCase
+class FizzBuzzTest extends TestCase
 {
     public function testFizzBuzzClass()
     {
