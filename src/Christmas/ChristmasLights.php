@@ -12,7 +12,7 @@ class ChristmasLights
      * @param array $lightsMap
      * @return array
      */
-    public function toggleFirstLine($lightsMap)
+    public function toggleFirstLine(array $lightsMap) : array
     {
         reset($lightsMap);
         $firstKey = key($lightsMap);
@@ -24,7 +24,14 @@ class ChristmasLights
         return $lightsMap;
     }
 
-    public function turnOnLightsRange($lightsMap, $start, $end)
+    /**
+     * @param array $lightsMap Full map of lights
+     * @param int $start Start point
+     * @param int $end End point
+     *
+     * @return array Map of turned on lights
+     */
+    public function turnOnLightsRange(array $lightsMap, int $start, int $end) : array
     {
         for ($i = $start; $i <= $end; $i++) {
             for ($j = $start; $j <= $end; $j++) {
@@ -34,7 +41,12 @@ class ChristmasLights
         return $lightsMap;
     }
 
-    public function generateMap()
+    /**
+     * Generates maps of turned off lights
+     *
+     * @return array
+     */
+    public function generateMap() : array
     {
         $lightMap = [];
 
@@ -47,19 +59,3 @@ class ChristmasLights
         return $lightMap;
     }
 }
-
-$a = new ChristmasLights();
-$lightsMap = $a->generateMap();
-$lightsMap = $a->toggleFirstLine($lightsMap);
-$lightsMap = $a->turnOnLightsRange($lightsMap, 499, 500);
-
-//echo '<pre>';
-//foreach ($lightsMap as $lightsRows) {
-//
-//    foreach ($lightsRows as $lightsRow) {
-//        echo $lightsRow . " ";
-//    }
-//
-//    echo "\n";
-//}
-//echo '</pre>';

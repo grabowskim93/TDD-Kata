@@ -9,15 +9,20 @@ namespace App\GossipBusDriver;
 class GossipingBusDriver
 {
     /**
+     * Amount of meetings during work week
+     */
+    const FULL_WEEK_MEETINGS_AMOUNT = 480;
+
+    /**
      * @param array $routes
      * @return array
      */
-    private function generateAllDayRoutes($routes)
+    private function generateAllDayRoutes(array $routes) : array
     {
         foreach ($routes as &$routeStops) {
             $stops = count($routeStops);
 
-            for ($i = 0; $i < 480; $i++) {
+            for ($i = 0; $i < self::FULL_WEEK_MEETINGS_AMOUNT; $i++) {
                 if (!isset($routeStops[$i])) {
                     $offset = $i % $stops;
                     $routeStops[$i] = $routeStops[$offset];
@@ -32,14 +37,14 @@ class GossipingBusDriver
      * @param array $routes
      * @return int|mixed
      */
-    private function compareGossipStops($routes)
+    private function compareGossipStops(array $routes)
     {
         $routeKeys = array_keys($routes);
         $options = $this->prepareAvailableOptions($routeKeys);
         $output = [];
 
         $counter = 1;
-        for ($i = 0; $i < 480; $i++) {
+        for ($i = 0; $i < self::FULL_WEEK_MEETINGS_AMOUNT; $i++) {
             foreach ($options as $option) {
                 $keys = str_split($option);
                 if (!isset($output[$option])) {
@@ -63,7 +68,7 @@ class GossipingBusDriver
      * @param array $keys
      * @return array
      */
-    private function prepareAvailableOptions($keys)
+    private function prepareAvailableOptions(array $keys) : array
     {
         $options = [];
 
@@ -79,10 +84,12 @@ class GossipingBusDriver
     }
 
     /**
+     * If drivers never meet it returns never
+     *
      * @param int $result
      * @return string
      */
-    private function generateOutput($result)
+    private function generateOutput(int $result) : string
     {
         if (!$result) {
             return 'never';
@@ -95,7 +102,7 @@ class GossipingBusDriver
      * @param array $routes
      * @return string
      */
-    public function checkGossips($routes)
+    public function checkGossips(array $routes) : string
     {
         $routes = $this->generateAllDayRoutes($routes);
         $fullGossipSteps = $this->compareGossipStops($routes);
@@ -103,16 +110,3 @@ class GossipingBusDriver
         return $this->generateOutput($fullGossipSteps);
     }
 }
-
-$routes = [
-    [2, 1, 2],
-    [5, 2, 8]
-];
-$routes = [
-    [3, 1, 2, 3],
-    [3, 2, 3, 1],
-    [4, 2, 3, 4, 5]
-];
-
-$a = new GossipingBusDriver();
-$result = $a->checkGossips($routes);

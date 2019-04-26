@@ -2,9 +2,16 @@
 
 namespace App\FizzBuzz;
 
+/**
+ * Class FizzBuzz
+ * @package App\FizzBuzz
+ */
 class FizzBuzz
 {
-    public function getLines()
+    /**
+     * @return array
+     */
+    public function getLines() : array
     {
         $lines = [];
 

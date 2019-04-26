@@ -2,20 +2,42 @@
 
 namespace App\Carpaccio;
 
+/**
+ * Class Carpaccio
+ * @package App\Carpaccio
+ */
 class Carpaccio
 {
+    /**
+     * @var int $amount Pieces amount
+     */
     private $amount;
+    /**
+     * @var int $price Price of single item
+     */
     private $price;
+    /**
+     * @var int $state State symbol from which tax should be taken
+     */
     private $state;
 
-    private $tax = 0;
-    private $discountRate = 0;
     /**
-     * @var float|int
+     * @var int $tax Tax value
+     */
+    private $tax = 0;
+
+    /**
+     * @var float|int $totalPrice Total price to pay
      */
     private $totalPrice;
 
-    public function __construct($amount, $price, $state)
+    /**
+     * Carpaccio constructor.
+     * @param int $amount
+     * @param int $price
+     * @param int $state
+     */
+    public function __construct(int $amount, int $price, int $state)
     {
         $this->amount = $amount;
         $this->price = $price;
@@ -23,7 +45,12 @@ class Carpaccio
         $this->totalPrice = $amount * $price;
     }
 
-    public function getTax($state)
+    /**
+     * @param string $state The symbol of US state
+     *
+     * @return float|int Tax value
+     */
+    public function getTax(string $state)
     {
         switch ($state) {
             case 'UT':
@@ -52,14 +79,24 @@ class Carpaccio
         return $tax;
     }
 
-    public function getTaxAmount($price)
+    /**
+     * @param int $price Tax value
+     *
+     * @return float|int Tax to pay
+     */
+    public function getTaxAmount(int $price)
     {
         $taxRate = $this->getTax($this->state) / 100;
 
         return $taxRate * $price;
     }
 
-    public function getDiscountRate($priceBeforeDiscount)
+    /**
+     * @param $priceBeforeDiscount
+     *
+     * @return int Value of discount
+     */
+    public function getDiscountRate(int $priceBeforeDiscount) : int
     {
         switch ($priceBeforeDiscount) {
             case $priceBeforeDiscount >= 1000 && $priceBeforeDiscount < 5000:
@@ -86,14 +123,15 @@ class Carpaccio
         return $discountRate;
     }
 
-    public function getDiscountAmount($discountRate)
+    /**
+     * @param int $discountRate
+     *
+     * @return float|int
+     */
+    public function getDiscountAmount(int $discountRate)
     {
         $discountAmount = $discountRate * $this->totalPrice;
 
         return $discountAmount;
-    }
-
-    public function getTotalPrice()
-    {
     }
 }
