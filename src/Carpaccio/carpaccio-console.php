@@ -1,14 +1,11 @@
 <?php
 
-//////////////////////////
-/// //code
-require 'Carpaccio.php';
+use App\Carpaccio\Carpaccio;
 
-use App\Carpaccio\src\Carpaccio;
-
-$amount = $argv[1];
-$price = $argv[2];
-$state = $argv[3];
+//hardcoded values
+$amount = 501;
+$price = 10.00;
+$state = 'UT';
 
 $initalTotalPrice = $amount * $price;
 

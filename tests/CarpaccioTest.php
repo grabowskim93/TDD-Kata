@@ -19,6 +19,11 @@ class CarpaccioTest extends TestCase
         $this->carpaccio = new Carpaccio($this->amount, $this->price, $this->state);
     }
 
+    public function tearDown()
+    {
+        $this->carpaccio = null;
+    }
+
     public function testCarpaccioExist()
     {
         $carpaccio = new Carpaccio($this->amount, $this->price, $this->state);
