@@ -87,7 +87,7 @@ class GossipingBusDriver
      * If drivers never meet it returns never
      *
      * @param int $result
-     * @return string
+     * @return string | int
      */
     private function generateOutput(int $result) : string
     {
@@ -95,12 +95,12 @@ class GossipingBusDriver
             return 'never';
         }
 
-        return $result;
+        return (string) $result;
     }
 
     /**
      * @param array $routes
-     * @return string
+     * @return string | int
      */
     public function checkGossips(array $routes) : string
     {
