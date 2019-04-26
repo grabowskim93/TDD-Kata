@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace App\MarsRover\src;
+namespace App\MarsRover;
 
 /**
  * Class MarsRover

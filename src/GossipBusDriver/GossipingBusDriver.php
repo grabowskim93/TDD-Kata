@@ -1,6 +1,6 @@
 <?php
 
-namespace App\GossipingBusDriver\src;
+namespace App\GossipingBusDriver;
 
 /**
  * Class GossipingBusDriver

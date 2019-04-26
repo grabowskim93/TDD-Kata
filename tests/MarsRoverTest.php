@@ -2,9 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace App\MarsRover\test;
+namespace Test;
 
-use App\MarsRover\src\MarsRover;
+use App\MarsRover\MarsRover;
 use PHPUnit\Framework\TestCase;
 
 /**

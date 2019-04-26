@@ -1,8 +1,8 @@
 <?php
 
-namespace App\GossipingBusDriver\tests;
+namespace Tests;
 
-use App\GossipingBusDriver\src\GossipingBusDriver;
+use App\GossipingBusDriver\GossipingBusDriver;
 use PHPUnit\Framework\TestCase;
 
 class GossipingBusDriversTest extends TestCase

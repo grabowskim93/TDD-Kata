@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Carpaccio\tests;
+namespace Tests;
 
-use App\Carpaccio\src\Carpaccio;
+use App\Carpaccio\Carpaccio;
 use PHPUnit\Framework\TestCase;
 
 class CarpaccioTest extends TestCase
