@@ -13,11 +13,11 @@ class Carpaccio
      */
     private $amount;
     /**
-     * @var int $price Price of single item
+     * @var float $price Price of single item
      */
     private $price;
     /**
-     * @var int $state State symbol from which tax should be taken
+     * @var string $state State symbol from which tax should be taken
      */
     private $state;
 
@@ -34,10 +34,10 @@ class Carpaccio
     /**
      * Carpaccio constructor.
      * @param int $amount
-     * @param int $price
-     * @param int $state
+     * @param float $price
+     * @param string $state
      */
-    public function __construct(int $amount, int $price, int $state)
+    public function __construct(int $amount, float $price, string $state)
     {
         $this->amount = $amount;
         $this->price = $price;
