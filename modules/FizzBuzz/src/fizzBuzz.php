@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\FizzBuzz\src;
 
 class FizzBuzz
 {

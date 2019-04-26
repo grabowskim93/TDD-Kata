@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Christmas\src;
 
 /**
  * Class ChristmasLights

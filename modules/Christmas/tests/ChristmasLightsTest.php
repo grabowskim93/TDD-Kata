@@ -1,8 +1,8 @@
 <?php
 
-namespace App\tests;
+namespace App\ChristmasLights\tests;
 
-use App\ChristmasLights;
+use App\Christmas\src\ChristmasLights;
 use PHPUnit\Framework\TestCase;
 
 /**

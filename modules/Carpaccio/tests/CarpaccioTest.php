@@ -2,7 +2,7 @@
 
 namespace App\Carpaccio\tests;
 
-use App\Carpaccio;
+use App\Carpaccio\src\Carpaccio;
 use PHPUnit\Framework\TestCase;
 
 class CarpaccioTest extends TestCase
