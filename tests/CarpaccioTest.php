@@ -11,17 +11,18 @@ class CarpaccioTest extends TestCase
     private $price = 10.00;
     private $state = 'UT';
 
-    private $carpaccio;
-
-
-    public function setUp()
+    public function carpaccioProvider()
     {
-        $this->carpaccio = new Carpaccio($this->amount, $this->price, $this->state);
-    }
-
-    public function tearDown()
-    {
-        $this->carpaccio = null;
+        return [
+            [
+                [100, 10.00, 'UT'],
+                [100, 50.00, 'TX'],
+                [70, 100.00, 'NV'],
+                [100, 100.00, 'CA'],
+                [1000, 100.00, 'AL'],
+                [100, 10.00, 'CA'],
+            ]
+        ];
     }
 
     public function testCarpaccioExist()
@@ -52,30 +53,43 @@ class CarpaccioTest extends TestCase
 
     public function testTaxPerState()
     {
-        self::assertEquals(6.85, $this->carpaccio->getTax($this->state));
+        $carpaccio = new Carpaccio($this->amount, $this->price, $this->state);
+        self::assertEquals(6.85, $carpaccio->getTax($this->state));
     }
 
-    public function testTaxAmount()
+    /**
+     * @dataProvider carpaccioProvider
+     */
+    public function testTaxAmount($amount, $price, $state)
     {
-        $taxRate = $this->carpaccio->getTax($this->state) / 100;
-        $taxAmount = $taxRate * $this->amount;
+        $carpaccio = new Carpaccio($amount, $price, $state);
+        $taxRate = $carpaccio->getTax($state) / 100;
+        $taxAmount = $taxRate * $amount;
 
-        self::assertEquals($taxAmount, $this->carpaccio->getTaxAmount($this->amount));
+        self::assertEquals($taxAmount, $carpaccio->getTaxAmount($amount));
     }
 
-    public function testDiscountRate()
+    /**
+     * @dataProvider carpaccioProvider
+     */
+    public function testDiscountRate($amount, $price, $state)
     {
-        $totalPrice = $this->amount * $this->price;
-        self::assertEquals(3, $this->carpaccio->getDiscountRate($totalPrice));
+        $carpaccio = new Carpaccio($amount, $price, $state);
+        $totalPrice = $amount * $price;
+        self::assertEquals(3, $carpaccio->getDiscountRate($totalPrice));
     }
 
-    public function testDiscountAmount()
+    /**
+     * @dataProvider carpaccioProvider
+     */
+    public function testDiscountAmount($amount, $price, $state)
     {
-        $totalPrice = $this->amount * $this->price;
+        $carpaccio = new Carpaccio($amount, $price, $state);
+        $totalPrice = $amount * $price;
 
-        $discountRate = $this->carpaccio->getDiscountRate($totalPrice);
+        $discountRate = $carpaccio->getDiscountRate($totalPrice);
         $discountAmount = ($totalPrice) * $discountRate;
 
-        self::assertEquals($discountAmount, $this->carpaccio->getDiscountAmount($discountRate));
+        self::assertEquals($discountAmount, $carpaccio->getDiscountAmount($discountRate));
     }
 }
