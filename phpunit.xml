@@ -3,7 +3,9 @@
     <testsuite name='unitTests'>
         <directory suffix='Test.php'>./tests</directory>
     </testsuite>
-    <whitelist processUncoveredFilesFromWhitelist="true">
-        <directory suffix=".php">./src</directory>
-    </whitelist>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./src</directory>
+        </whitelist>
+    </filter>
 </phpunit>
