@@ -73,7 +73,7 @@ class MarsRover
      * @param int $direction
      * @throws \DomainException
      */
-    private function validateMoveInputRange(int $direction) : void 
+    private function validateMoveInputRange(int $direction) : void
     {
         if (!in_array($direction, [0,1])) {
             throw new \DomainException('Wrong input value. Proper values: 0, 1');

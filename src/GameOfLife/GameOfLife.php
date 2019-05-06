@@ -21,7 +21,7 @@ class GameOfLife
                 if ($j == $initialRows || $i == $initialRows) {
                     $initialMap[$i][$j] = 0;
                 } else {
-                    $initialMap[$i][$j] = rand(0,1);
+                    $initialMap[$i][$j] = rand(0, 1);
                 }
             }
         }
@@ -43,7 +43,7 @@ class GameOfLife
         $endYPoint = $colIndex + 1;
         $sum = 0;
 
-        for ($i = $startXPoint ; $i <= $endXPoint; $i++) {
+        for ($i = $startXPoint; $i <= $endXPoint; $i++) {
             for ($j= $startYPoint; $j <= $endYPoint; $j++) {
                 if ($rowIndex === $i && $colIndex === $j) {
                     continue;
@@ -88,5 +88,4 @@ class GameOfLife
 
         return $newMap;
     }
-
 }

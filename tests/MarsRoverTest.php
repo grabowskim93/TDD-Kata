@@ -105,7 +105,6 @@ class MarsRoverTest extends TestCase
 
         $marsRover->validateCommandInput($n, $s, $e, $w);
         $this->assertTrue(true);
-
     }
 
     /**

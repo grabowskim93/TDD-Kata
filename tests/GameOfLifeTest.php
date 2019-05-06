@@ -65,7 +65,7 @@ class GameOfLifeTest extends TestCase
     /**
      *
      */
-    function setUp()
+    public function setUp()
     {
         $this->gameOfLife = new GameOfLife();
     }
@@ -73,7 +73,7 @@ class GameOfLifeTest extends TestCase
     /**
      * Test if class exists
      */
-    function testClassExists()
+    public function testClassExists()
     {
         $classInstance = $this->gameOfLife instanceof GameOfLife;
         $this->assertEquals(true, $classInstance);
@@ -82,7 +82,7 @@ class GameOfLifeTest extends TestCase
     /**
      * Test initial game map structure
      */
-    function testGeneratedStartData()
+    public function testGeneratedStartData()
     {
         //input array 4x4
         $startData = $this->gameOfLife->generateStartData();
@@ -103,7 +103,7 @@ class GameOfLifeTest extends TestCase
      * @dataProvider gameOfLifeProvider
      * @param array $startData
      */
-    function testInitialLifeStates($startData)
+    public function testInitialLifeStates($startData)
     {
         foreach ($startData as $rowIndex => $rows) {
             foreach ($rows as $colIndex => $value) {
@@ -118,7 +118,7 @@ class GameOfLifeTest extends TestCase
      * @dataProvider gameOfLifeProvider
      * @param array $startData
      */
-    function testStateChange($startData)
+    public function testStateChange($startData)
     {
         $newStates = [];
 
@@ -133,7 +133,7 @@ class GameOfLifeTest extends TestCase
     /**
      * Test if game ended correctly
      */
-    function testEndOfGame()
+    public function testEndOfGame()
     {
         $startGameOfLifeMap = $this->gameOfLife->generateStartData();
 
@@ -176,5 +176,4 @@ class GameOfLifeTest extends TestCase
             $i++;
         }
     }
-
 }
