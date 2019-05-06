@@ -15,24 +15,27 @@ class CarpaccioTest extends TestCase
     {
         return [
             [
-                [
-                    [100, 10.00, 'UT']
-                ],
-                [
-                    [100, 50.00, 'TX'],
-                ],
-                [
-                    [70, 100.00, 'NV'],
-                ],
-                [
-                    [100, 100.00, 'CA'],
-                ],
-                [
-                    [1000, 100.00, 'AL'],
-                ],
-                [
-                    [100, 10.00, 'CA'],
-                ],
+                100, 10.00, 'UT',
+            ],
+            [
+                100, 50.00, 'TX',
+            ],
+
+            [
+                70, 100.00, 'NV',
+
+            ],
+            [
+                100, 100.00, 'CA',
+            ],
+            [
+                1000, 100.00, 'AL',
+            ],
+            [
+                100, 10.00, 'CALAS',
+            ],
+            [
+                1, 1.00, 'CA',
             ]
         ];
     }
@@ -42,7 +45,7 @@ class CarpaccioTest extends TestCase
         $carpaccio = new Carpaccio($this->amount, $this->price, $this->state);
         $carpaccioClass = $carpaccio instanceof Carpaccio;
 
-        self::assertTrue($carpaccioClass);
+        self::assertEquals(true, $carpaccioClass);
     }
 
     public function testInputStateArg()
@@ -84,10 +87,10 @@ class CarpaccioTest extends TestCase
     /**
      * @dataProvider carpaccioProvider
      */
-    public function testDiscountRate($amount, $price, $state)
+    public function testDiscountRate()
     {
-        $carpaccio = new Carpaccio($amount, $price, $state);
-        $totalPrice = $amount * $price;
+        $carpaccio = new Carpaccio($this->amount, $this->price, $this->state);
+        $totalPrice = $this->amount * $this->price;
         self::assertEquals(3, $carpaccio->getDiscountRate($totalPrice));
     }
 
