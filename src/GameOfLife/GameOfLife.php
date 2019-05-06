@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\GameOfLife;
 
 /**
@@ -33,9 +35,9 @@ class GameOfLife
      * @param array $startData
      * @param int $rowIndex
      * @param int $colIndex
-     * @return int|mixed
+     * @return int
      */
-    public function sumCellScore($startData, $rowIndex, $colIndex)
+    public function sumCellScore(array $startData, int $rowIndex, int $colIndex) : int
     {
         $startXPoint = $rowIndex - 1;
         $endXPoint = $rowIndex + 1;
@@ -63,7 +65,7 @@ class GameOfLife
      * @param array $startData
      * @return array
      */
-    public function changeStatus($startData)
+    public function changeStatus(array $startData) : array
     {
         $newStates = [];
         $newMap = [];
