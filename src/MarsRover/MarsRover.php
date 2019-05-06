@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace App\MarsRover;
 
+use DomainException;
+
 /**
  * Class MarsRover
  * @package App\MarsRover\src
@@ -51,16 +53,16 @@ class MarsRover
      * @param int $s
      * @param int $e
      * @param int $w
-     * @throws \DomainException
+     * @throws DomainException
      */
     public function validateCommandInput(int $n, int $s, int $e, int $w) : void
     {
         if ($n === $s) {
-            throw new \DomainException('Wrong move');
+            throw new DomainException('Wrong move');
         }
 
         if ($e === $w) {
-            throw new \DomainException('Wrong move');
+            throw new DomainException('Wrong move');
         }
 
         $this->validateMoveInputRange($n);
@@ -71,12 +73,12 @@ class MarsRover
 
     /**
      * @param int $direction
-     * @throws \DomainException
+     * @throws DomainException
      */
     private function validateMoveInputRange(int $direction) : void
     {
         if (!in_array($direction, [0,1])) {
-            throw new \DomainException('Wrong input value. Proper values: 0, 1');
+            throw new DomainException('Wrong input value. Proper values: 0, 1');
         }
     }
 }

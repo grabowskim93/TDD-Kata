@@ -5,7 +5,9 @@ declare(strict_types = 1);
 namespace Test;
 
 use App\MarsRover\MarsRover;
+use DomainException;
 use PHPUnit\Framework\TestCase;
+use TypeError;
 
 /**
  * Class MarsRoverTest
@@ -88,7 +90,7 @@ class MarsRoverTest extends TestCase
      */
     public function testWrongInitialPoints($x, $y)
     {
-        $this->expectException(\TypeError::class);
+        $this->expectException(TypeError::class);
         new MarsRover($x, $y);
     }
 
@@ -118,7 +120,7 @@ class MarsRoverTest extends TestCase
     {
         $marsRover = new MarsRover(1, 1);
 
-        $this->expectException(\DomainException::class);
+        $this->expectException(DomainException::class);
         $marsRover->validateCommandInput($n, $s, $e, $w);
     }
 
@@ -133,7 +135,7 @@ class MarsRoverTest extends TestCase
     {
         $marsRover = new MarsRover(1, 1);
 
-        $this->expectException(\TypeError::class);
+        $this->expectException(TypeError::class);
         $marsRover->validateCommandInput($n, $s, $e, $w);
     }
 }

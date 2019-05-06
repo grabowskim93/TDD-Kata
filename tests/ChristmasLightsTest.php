@@ -98,8 +98,9 @@ class ChristmasLightsTest extends TestCase
     }
 
     /**
-     * @depends testToggleFirstLine
+     * @depends      testToggleFirstLine
      * @dataProvider lightsMapProvider
+     * @param $lightsMap
      */
     public function testTotalBrightnessTurnOn($lightsMap)
     {
@@ -111,8 +112,9 @@ class ChristmasLightsTest extends TestCase
     }
 
     /**
-     * @depends testToggleFirstLine
+     * @depends      testToggleFirstLine
      * @dataProvider lightsMapProvider
+     * @param $lightsMap
      */
     public function testTotalBrightnessToggle($lightsMap)
     {

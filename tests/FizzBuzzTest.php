@@ -11,7 +11,7 @@ class FizzBuzzTest extends TestCase
     {
         $fizz = new FizzBuzz();
 
-        self::assertTrue(true);
+        self::assertTrue($fizz instanceof FizzBuzz);
     }
 
     public function testNumberOfFizzLines()

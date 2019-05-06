@@ -74,6 +74,9 @@ class CarpaccioTest extends TestCase
 
     /**
      * @dataProvider carpaccioProvider
+     * @param $amount
+     * @param $price
+     * @param $state
      */
     public function testTaxAmount($amount, $price, $state)
     {
@@ -96,6 +99,9 @@ class CarpaccioTest extends TestCase
 
     /**
      * @dataProvider carpaccioProvider
+     * @param $amount
+     * @param $price
+     * @param $state
      */
     public function testDiscountAmount($amount, $price, $state)
     {
