@@ -58,7 +58,7 @@ class StringCalculator
     {
         $sum = 0;
         foreach ($components as $item) {
-            if (empty($item)) {
+            if (empty($item) || $item >= 1000) {
                 $item = 0;
             }
 

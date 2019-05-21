@@ -76,6 +76,11 @@ class StringCalculatorTest extends TestCase
             'input' => '//;\n1;2',
             'expected' => 3
         ];
+
+        yield 'Number more than 1000' => [
+            'input' => '1,1000,1001,2',
+            'expected' => 3
+        ];
     }
 
 
