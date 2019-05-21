@@ -17,6 +17,7 @@ use DomainException;
  */
 class StringCalculator
 {
+    const DEFINE_DELIMITER_TAGS_LENGTH = 2;
     /**
      * @var string
      */
@@ -103,9 +104,11 @@ class StringCalculator
      */
     private function determineDelimiter(string $components): string
     {
-        if (substr($components, 0,2) === '//') {
-            $this->delimiter = substr($components, 2, 1);
-            $components = substr($components, '3');
+        if (substr($components, 0,self::DEFINE_DELIMITER_TAGS_LENGTH) === '//') {
+            $length = strpos($components, '\n') - self::DEFINE_DELIMITER_TAGS_LENGTH;
+            $this->delimiter = substr($components, self::DEFINE_DELIMITER_TAGS_LENGTH, $length);
+
+            $components = substr($components, $length + self::DEFINE_DELIMITER_TAGS_LENGTH);
         }
 
         return $components;

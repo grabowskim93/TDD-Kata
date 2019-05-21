@@ -81,6 +81,11 @@ class StringCalculatorTest extends TestCase
             'input' => '1,1000,1001,2',
             'expected' => 3
         ];
+
+        yield 'Big delimiter' => [
+            'input' => '//***\n1***2***3',
+            'expected' => 6
+        ];
     }
 
 
