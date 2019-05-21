@@ -51,5 +51,15 @@ class StringCalculatorTest extends TestCase
             'input' => '1,2,3,4,5,6,7',
             'expected' => 28
         ];
+
+        yield 'New line' => [
+            'input' => '1\n2,3',
+            'expected' => 6
+        ];
+
+        yield 'Determine delimiter' => [
+            'input' => '//;\n1;2',
+            'expected' => 3
+        ];
     }
 }
