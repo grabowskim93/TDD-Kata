@@ -5,6 +5,8 @@ declare(use_strict = 1);
 namespace Test;
 
 use App\StringCalculator\StringCalculator;
+use DomainException;
+use Generator;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -28,9 +30,22 @@ class StringCalculatorTest extends TestCase
     }
 
     /**
+     * @dataProvider negativeNumbersProvider
+     *
+     * @param string $input
+     * @param string $exception
+     */
+    public function testNegativeNumbers(string $input, string $exception): void
+    {
+        $calculator = new StringCalculator();
+        $this->expectException($exception);
+        $calculator->add($input);
+    }
+
+    /**
      * @return \Generator
      */
-    public function calculatorComponentsProvider()
+    public function calculatorComponentsProvider(): Generator
     {
         yield 'Two components' => [
             'input' => '1,2',
@@ -60,6 +75,18 @@ class StringCalculatorTest extends TestCase
         yield 'Determine delimiter' => [
             'input' => '//;\n1;2',
             'expected' => 3
+        ];
+    }
+
+
+    /**
+     * @return \Generator
+     */
+    public function negativeNumbersProvider(): Generator
+    {
+        yield 'Negative number exception' => [
+            'input' => '//;\n-1;-2',
+            'expected' => DomainException::class
         ];
     }
 }

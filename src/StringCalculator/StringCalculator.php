@@ -8,6 +8,8 @@ declare(use_strict = 1);
 
 namespace App\StringCalculator;
 
+use DomainException;
+
 /**
  * Class StringCalculator
  *
@@ -19,10 +21,15 @@ class StringCalculator
      * @var string
      */
     private $delimiter;
+    /**
+     * @var array
+     */
+    private $negative;
 
     public function __construct()
     {
         $this->delimiter = ',';
+        $this->negative = [];
     }
 
     /**
@@ -47,14 +54,24 @@ class StringCalculator
      *
      * @return int
      */
-    private function addComponents(array $components): int
+    private function addComponents(array $components)
     {
         $sum = 0;
         foreach ($components as $item) {
             if (empty($item)) {
                 $item = 0;
             }
+
+            if ($item < 0) {
+                $this->negative[] = $item;
+                continue;
+            }
+
             $sum += $item;
+        }
+
+        if (!empty($this->negative)) {
+            throw new DomainException('Negative numbers are not allowed. Passed: ' . implode(',', $this->negative));
         }
 
         return $sum;
