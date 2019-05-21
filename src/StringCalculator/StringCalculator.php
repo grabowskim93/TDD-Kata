@@ -26,11 +26,16 @@ class StringCalculator
      * @var array
      */
     private $negative;
+    /**
+     * @var array
+     */
+    private $delimiters;
 
     public function __construct()
     {
         $this->delimiter = ',';
         $this->negative = [];
+        $this->delimiters = [];
     }
 
     /**
@@ -42,10 +47,12 @@ class StringCalculator
     {
         $components = $this->determineDelimiter($components);
 
-        $components = $this->explodeByDelimiter(',', $components);
-        $components = $this->explodeByDelimiter('\n', $components);
+        foreach ($this->delimiters as $delimiter) {
+            $components = str_replace($delimiter, ',', $components);
+        }
+        $components = str_replace('\n', ',', $components);
 
-        $components = explode($this->delimiter, $components);
+        $components = explode(',', $components);
 
         return $this->addComponents($components);
     }
@@ -79,25 +86,6 @@ class StringCalculator
     }
 
     /**
-     * @param string $delimiter String delimiter
-     * @param string $components Calculator add action components
-     *
-     * @return string
-     */
-    private function explodeByDelimiter(string $delimiter, string $components): string
-    {
-        $exploded = [];
-
-        $componentsArr = explode($delimiter, $components);
-
-        foreach ($componentsArr as $item) {
-            $exploded[] = $item;
-        }
-
-        return implode($this->delimiter, $exploded);
-    }
-
-    /**
      * @param string $components Calculator add action components
      *
      * @return string
@@ -106,8 +94,12 @@ class StringCalculator
     {
         if (substr($components, 0,self::DEFINE_DELIMITER_TAGS_LENGTH) === '//') {
             $length = strpos($components, '\n') - self::DEFINE_DELIMITER_TAGS_LENGTH;
-            $this->delimiter = substr($components, self::DEFINE_DELIMITER_TAGS_LENGTH, $length);
+            $delimiter = substr($components, self::DEFINE_DELIMITER_TAGS_LENGTH, $length);
 
+            preg_match_all('/\[(.*?)\]/', $delimiter, $results, PREG_SET_ORDER, 0);
+            foreach ($results as $result) {
+                $this->delimiters[] = $result[1];
+            }
             $components = substr($components, $length + self::DEFINE_DELIMITER_TAGS_LENGTH);
         }
 

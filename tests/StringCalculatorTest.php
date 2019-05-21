@@ -73,7 +73,7 @@ class StringCalculatorTest extends TestCase
         ];
 
         yield 'Determine delimiter' => [
-            'input' => '//;\n1;2',
+            'input' => '//[;]\n1;2',
             'expected' => 3
         ];
 
@@ -83,7 +83,17 @@ class StringCalculatorTest extends TestCase
         ];
 
         yield 'Big delimiter' => [
-            'input' => '//***\n1***2***3',
+            'input' => '//[***]\n1***2***3',
+            'expected' => 6
+        ];
+
+        yield 'Multiple delimiter' => [
+            'input' => '//[*][%]\n1*2%3',
+            'expected' => 6
+        ];
+
+        yield 'Multiple length delimiter' => [
+            'input' => '//[**][%!%]\n1**2%!%3',
             'expected' => 6
         ];
     }
