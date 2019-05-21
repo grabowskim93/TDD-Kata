@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * String calculator sum string numbers.
+ */
+
 declare(use_strict = 1);
 
 namespace App\StringCalculator;
@@ -12,7 +16,7 @@ namespace App\StringCalculator;
 class StringCalculator
 {
     /**
-     * @param string $components
+     * @param string $components Components to add
      *
      * @return int
      */
@@ -23,6 +27,21 @@ class StringCalculator
         }
         $componentsArr = explode(',', $components);
 
-        return $componentsArr[0] + $componentsArr[1];
+        return $this->addComponents($componentsArr);
+    }
+
+    /**
+     * @param array $components Components to add
+     *
+     * @return int
+     */
+    private function addComponents(array $components): int
+    {
+        $sum = 0;
+        foreach ($components as $item) {
+            $sum += $item;
+        }
+
+        return $sum;
     }
 }

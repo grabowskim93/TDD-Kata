@@ -46,5 +46,10 @@ class StringCalculatorTest extends TestCase
             'input' => '',
             'expected' => 0
         ];
+
+        yield 'Many numbers to add' => [
+            'input' => '1,2,3,4,5,6,7',
+            'expected' => 28
+        ];
     }
 }
