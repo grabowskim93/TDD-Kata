@@ -17,28 +17,38 @@ use DomainException;
  */
 class StringCalculator
 {
-    const DEFINE_DELIMITER_TAGS_LENGTH = 2;
     /**
-     * @var string
+     * @var int Delimiter chars length
      */
-    private $delimiter;
+    const DEFINE_DELIMITER_TAGS_LENGTH = 2;
+
     /**
-     * @var array
+     * @var string Default delimiter
+     */
+    const DEFAULT_DELIMITER = ',';
+
+    /**
+     * @var array Negative numbers
      */
     private $negative;
+
     /**
-     * @var array
+     * @var array Array of all string delimiters
      */
     private $delimiters;
 
+    /**
+     * StringCalculator constructor.
+     */
     public function __construct()
     {
-        $this->delimiter = ',';
         $this->negative = [];
         $this->delimiters = [];
     }
 
     /**
+     * Add string values.
+     *
      * @param string $components Components to add
      *
      * @return int
@@ -47,14 +57,28 @@ class StringCalculator
     {
         $components = $this->determineDelimiter($components);
 
-        foreach ($this->delimiters as $delimiter) {
-            $components = str_replace($delimiter, ',', $components);
-        }
-        $components = str_replace('\n', ',', $components);
+        $components = $this->replaceDelimiters($components);
 
-        $components = explode(',', $components);
+        $components = explode(self::DEFAULT_DELIMITER, $components);
 
         return $this->addComponents($components);
+    }
+
+    /**
+     * Replace all delimiters to default one.
+     *
+     * @param string $components Components to split
+     *
+     * @return string
+     */
+    private function replaceDelimiters(string $components): string
+    {
+        foreach ($this->delimiters as $delimiter) {
+            $components = str_replace($delimiter, self::DEFAULT_DELIMITER, $components);
+        }
+        $components = str_replace('\n', self::DEFAULT_DELIMITER, $components);
+
+        return $components;
     }
 
     /**
@@ -62,7 +86,7 @@ class StringCalculator
      *
      * @return int
      */
-    private function addComponents(array $components)
+    private function addComponents(array $components): int
     {
         $sum = 0;
         foreach ($components as $item) {
