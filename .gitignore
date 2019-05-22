@@ -4,3 +4,4 @@
 docker
 docker-compose.yml
 .idea
+.php_cs.cache

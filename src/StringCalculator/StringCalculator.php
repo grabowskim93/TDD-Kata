@@ -116,7 +116,7 @@ class StringCalculator
      */
     private function determineDelimiter(string $components): string
     {
-        if (substr($components, 0,self::DEFINE_DELIMITER_TAGS_LENGTH) === '//') {
+        if (substr($components, 0, self::DEFINE_DELIMITER_TAGS_LENGTH) === '//') {
             $length = strpos($components, '\n') - self::DEFINE_DELIMITER_TAGS_LENGTH;
             $delimiter = substr($components, self::DEFINE_DELIMITER_TAGS_LENGTH, $length);
 
