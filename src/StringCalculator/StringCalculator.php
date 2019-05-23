@@ -4,7 +4,7 @@
  * String calculator sum string numbers.
  */
 
-declare(use_strict = 1);
+declare(strict_types=1);
 
 namespace App\StringCalculator;
 
@@ -38,12 +38,20 @@ class StringCalculator
     private $delimiters;
 
     /**
-     * StringCalculator constructor.
+     * @var \App\StringCalculator\StringCalculatorLogger
      */
-    public function __construct()
+    private $logger;
+
+    /**
+     * StringCalculator constructor.
+     *
+     * @param \App\StringCalculator\StringCalculatorLogger $logger
+     */
+    public function __construct(StringCalculatorLogger $logger = null)
     {
         $this->negative = [];
         $this->delimiters = [];
+        $this->logger = $logger;
     }
 
     /**
@@ -61,7 +69,11 @@ class StringCalculator
 
         $components = explode(self::DEFAULT_DELIMITER, $components);
 
-        return $this->addComponents($components);
+        $sum = $this->addComponents($components);
+
+        $this->log($sum);
+
+        return $sum;
     }
 
     /**
@@ -128,5 +140,17 @@ class StringCalculator
         }
 
         return $components;
+    }
+
+    /**
+     * Log sum.
+     *
+     * @param int $sum Sum of operation.
+     */
+    private function log(int $sum)
+    {
+        if (!is_null($this->logger)) {
+            $this->logger->logSum($sum);
+        }
     }
 }
